@@ -33,7 +33,7 @@ export default function HomeProduct({params} : {params : {id : string}}) {
   }
 
   return (
-    <main className=" text-black font-bold px-8 lg:px-40">
+    <main className="bg-[#F0F0F5] min-h-screen text-black font-bold px-8 lg:px-40">
       <Link href='/' className="flex items-center gap-x-4 text-[#617480] text-sm py-6">
         <RiArrowGoBackLine className="p-1 box-content rounded-full border-2 border-[#617480]  font-bold"/>
         Volver
