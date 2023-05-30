@@ -5,7 +5,7 @@ import { ProductList } from "@/components/ProductList";
 
 export default function Home() {
   return (
-      <main className="bg-[#F0F0F5] h-screen w-full">
+      <main className="bg-[#F0F0F5] h-screen w-full pb-4">
         <FilterBar />
         <ProductList />
       </main>
