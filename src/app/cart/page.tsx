@@ -6,6 +6,7 @@ import { ProductInCart } from '@/types/Product'
 import { formatPrice } from '@/utils/formatPrice'
 import { RiArrowGoBackLine } from 'react-icons/ri'
 import Link from 'next/link'
+import { toast } from 'react-hot-toast'
 
 export default function Cart() {
 
@@ -32,6 +33,17 @@ export default function Cart() {
     updateLocalStorage(newValue)
   }
 
+  const handlePayment = (typeMsg : 'success' | 'error') => {
+    const paymentMsg = {
+        success : () => toast.success('Compra finalizada correctamente'),
+        error : () => toast.error('No hay nada que comprar')
+    }
+
+    return paymentMsg[typeMsg]()
+  }
+
+
+
   const cartTotal = formatPrice(calculateTotal(value))
 
   return (
@@ -48,7 +60,8 @@ export default function Cart() {
                 <section className='grid grid-cols-1 gap-y-4'>
                     {
                         value.map(product => (
-                            <CartItem handleUpdateQuantity={handleUpdateQuantity} product={product}
+                            <CartItem 
+                            handleUpdateQuantity={handleUpdateQuantity} product={product}
                             handleDelete={handleDeleteItem}
                             />
                         ))
@@ -72,7 +85,7 @@ export default function Cart() {
                         <p className='font-semibold text-[#41414D]'>{cartTotal + 40}</p>
                     </div>
                 </section>
-                <button className='bg-[#51B853] rounded text-white font-medium w-full text-2xl py-1.5 '>FINALIZAR COMPRA</button>
+                <button className='bg-[#51B853] rounded text-white font-medium w-full text-2xl py-1.5 mb-4' onClick={() => handlePayment(value.length ? 'success' : 'error')}>FINALIZAR COMPRA</button>
                 </section>
                 <footer className=''>
                     <ul className='flex flex-col gap-y-3 font-medium text-sm text-[#737380] underline'>

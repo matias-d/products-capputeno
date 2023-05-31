@@ -2,12 +2,11 @@
 
 import { FilterProvider } from "@/context/FilterContext"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Toaster } from "react-hot-toast"
 
 type DefaultProviderProps = {
     children : React.ReactNode
 }
-
-
 
 export function DefaultProvider({ children } : DefaultProviderProps) {
 
@@ -17,6 +16,9 @@ export function DefaultProvider({ children } : DefaultProviderProps) {
     <QueryClientProvider client={client}>
         <FilterProvider>
             { children }
+            <Toaster 
+             position="top-right"
+             reverseOrder={false}/>
         </FilterProvider>
     </QueryClientProvider>
   )
